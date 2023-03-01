@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 env:
-  CONTAINER_IMAGE: vulhub/bash:4.3.0-with-httpd
+  CONTAINER_IMAGE: vulhub/mysql:5.5.23
 
 jobs:
           
@@ -40,6 +40,6 @@ jobs:
         with:
           edgebit-url: https://rob.edgebit.io
           token: ${{ secrets.EDGEBIT_ACCESS_TOKEN }}
-          labels: 'foo=bar, fizz=buzz'
+          labels: 'vuln=shellshock'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sbom-file: /tmp/sbom.syft.json

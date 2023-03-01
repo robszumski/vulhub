@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 env:
-  CONTAINER_IMAGE: vulhub/imagemagick:7.0.8-27-php
+  CONTAINER_IMAGE: vulhub/mysql:5.5.23
 
 jobs:
           

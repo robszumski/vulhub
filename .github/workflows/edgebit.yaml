@@ -40,6 +40,6 @@ jobs:
         with:
           edgebit-url: https://rob.edgebit.io
           token: ${{ secrets.EDGEBIT_ACCESS_TOKEN }}
-          labels: 'foo=bar, fizz=buzz'
+          labels: 'vuln=shellshock'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sbom-file: /tmp/sbom.syft.json

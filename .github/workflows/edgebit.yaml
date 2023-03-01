@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 env:
-  CONTAINER_IMAGE: shellshock:latest
+  CONTAINER_IMAGE: vulhub/bash:4.3.0-with-httpd
 
 jobs:
   build-container:
@@ -29,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v4
         
         with:
-          context: vulhub/bash:4.3.0-with-httpd
+          context: bash/CVE-2014-6271
           tags: ${{ env.CONTAINER_IMAGE }}
           
   upload-sbom:

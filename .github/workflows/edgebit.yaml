@@ -16,27 +16,9 @@ env:
   CONTAINER_IMAGE: vulhub/bash:4.3.0-with-httpd
 
 jobs:
-  build-container:
-    runs-on: ubuntu-latest
-    outputs:
-      container_image: ${{ env.CONTAINER_IMAGE }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        
-        with:
-          context: bash/CVE-2014-6271
-          tags: ${{ env.CONTAINER_IMAGE }}
           
   upload-sbom:
     runs-on: ubuntu-latest
-
-    # ensure the SBOM is genearted after your container is built
-    needs: build-container
 
     # to prevent duplication on a push & PR in quick succession: 
     if: (github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000') || github.event_name == 'pull_request'
@@ -48,7 +30,7 @@ jobs:
         uses: anchore/sbom-action@v0
         with:
           # generate for the container built above
-          image: ${{needs.build-container.outputs.container_image}}
+          image: ${{ env.CONTAINER_IMAGE }}
           artifact-name: sbom.syft.json
           output-file: /tmp/sbom.syft.json
           format: syft-json
